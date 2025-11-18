@@ -1,0 +1,67 @@
+You are an expert full-stack developer. Build a complete, fully working, beautiful, production-quality Microfinance Loan Management System (MLMS) for Pakistani MFIs) using:
+
+- Backend: Python 3.11 + FastAPI
+- Database: SQLite (with SQLAlchemy ORM + Alembic for migrations)
+- Frontend: React 18 + TypeScript + Vite + Tailwind CSS + Shadcn/ui + Recharts for charts
+- Authentication: Simple JWT-based login (one default loan officer user: username: admin, password: admin123)
+- AI Logic: Rule-based + lightweight scikit-learn model for risk scoring and default prediction (include a small trained model in the code)
+
+The app must implement these 4 main sections (all fully functional end-to-end):
+
+1. **Client Onboarding & Risk Profiling**
+   - Form to add new client: Name, CNIC (validate 13 digits), Phone, Address, Monthly Income, Existing Loans (Yes/No), Employment Status (Salaried/Self-Employed/Unemployed)
+   - On save → automatically calculate and display AI Risk Score: Low / Medium / High
+   - Risk scoring logic (use this exact rule-based + ML hybrid):
+     - Base rules: Income < 30k → +2, Existing loans Yes → +2, Unemployed → +3
+     - Train a tiny RandomForestClassifier on synthetic data (generate ~200 sample records inside the code) and use it to predict final risk level
+   - Client list page with search by name/CNIC and risk badges (green/yellow/red)
+
+2. **Loan Application & Smart Schedule Generation**
+   - Select existing client → Create loan form: Loan Amount, Loan Type (Business/Agriculture/Personal), Duration (months), Start Date
+   - On submit → auto-generate monthly installment schedule (equal principal + 15% flat profit rate common in Pakistani MFIs)
+   - AI Recommendation: Based on risk score suggest max amount:
+     - Low risk → up to 300,000 PKR
+     - Medium → up to 150,000 PKR
+     - High → up to 50,000 PKR or show warning
+   - Show full repayment schedule table immediately after creation
+
+3. **Repayment Tracking & Default Alerts**
+   - Loan details page shows repayment schedule table with columns: Installment #, Due Date, Amount Due, Status (Paid / Pending / Overdue), Action
+   - Button to mark installment as paid (with date)
+   - Automatic overdue detection (if due date passed and not paid → red tag + "Overdue")
+   - Default prediction: If 2+ consecutive installments overdue OR client risk was High → show "High Default Risk" alert banner
+   - List of all overdue loans on sidebar/home
+
+4. **Dashboard & Analytics (Beautiful main landing page)**
+   - Cards: Total Clients, Active Loans, Total Disbursed, Total Collected, Overdue Loans
+   - Risk Distribution pie chart (Low/Medium/High)
+   - Recent Activity table (last 10 loans/repayments)
+   - Overdue loans highlight section
+
+Requirements that MUST be followed exactly:
+
+- Beautiful, pixel-perfect, mobile-responsive UI using Tailwind + Shadcn/ui components (use modern card-based layout, proper spacing, hover effects, green/red badges)
+- All pages accessible via sidebar navigation: Dashboard, Clients, Loans, Repayments
+- Proper REST API endpoints with FastAPI (include full OpenAPI docs at /docs)
+- Frontend must use React Router v6 and Axios for API calls
+- Include seed data: on first run, create 8-10 sample clients with mixed risk levels and 4-5 loans (some active, some with overdue payments)
+- Risk scoring and default prediction must actually work (show the calculated score and explanation)
+- Use proper folder structure:
+  backend/
+    main.py
+    models.py
+    database.py
+    schemas.py
+    crud.py
+    ml_model.py (train and save model with joblib)
+  frontend/
+    src/
+      components/
+      pages/
+      services/api.ts
+- Include a Mermaid architecture diagram in README.md
+- Make sure the app runs perfectly on Replit (use uvicorn and serve frontend build)
+
+Generate the entire project with all files ready to run. After generating, also give me the exact Replit run command and any setup steps (like npm install, alembic upgrade head, etc.).
+
+Make this the best-looking and most functional microfinance system possible — clean code, proper typing, error handling, loading states, toast notifications, and beautiful UI.
