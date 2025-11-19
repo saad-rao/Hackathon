@@ -146,10 +146,7 @@ Preferred communication style: Simple, everyday language.
 - TypeScript compiler for type checking
 - Tailwind CSS with PostCSS and Autoprefixer
 
-**Development Tools:**
-- @replit/vite-plugin-runtime-error-modal - Error overlay for Replit environment
-- @replit/vite-plugin-cartographer - Replit-specific tooling
-- tsx - TypeScript execution for development server
+
 
 **Date Handling:**
 - date-fns - Modern date utility library for formatting and calculations

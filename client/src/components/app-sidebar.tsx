@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Wallet, Receipt, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Wallet, Receipt, LogOut, FileSpreadsheet } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import {
   Sidebar,
@@ -33,6 +33,11 @@ const menuItems = [
     title: "Repayments",
     url: "/repayments",
     icon: Receipt,
+  },
+  {
+    title: "CSV Visualizer",
+    url: "/data-visualizer",
+    icon: FileSpreadsheet,
   },
 ];
 

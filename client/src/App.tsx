@@ -16,6 +16,7 @@ import LoanForm from "@/pages/loan-form";
 import LoanDetail from "@/pages/loan-detail";
 import Repayments from "@/pages/repayments";
 import NotFound from "@/pages/not-found";
+import CsvVisualizer from "@/pages/csv-visualizer";
 
 function ProtectedRoute({ component: Component }: { component: () => JSX.Element }) {
   if (!isAuthenticated()) {
@@ -51,6 +52,9 @@ function Router() {
       </Route>
       <Route path="/repayments">
         {() => <ProtectedRoute component={Repayments} />}
+      </Route>
+      <Route path="/data-visualizer">
+        {() => <ProtectedRoute component={CsvVisualizer} />}
       </Route>
       <Route component={NotFound} />
     </Switch>
